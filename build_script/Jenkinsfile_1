@@ -1,0 +1,21 @@
+pipeline {
+    agent node('ub16.04')
+
+    stages {
+        stage('prepare') {
+            steps {
+                sh 'cat /etc/issue'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'whoami'
+            }
+        }
+    }
+}
+
+
+
+
