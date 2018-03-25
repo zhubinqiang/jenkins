@@ -1,5 +1,7 @@
 pipeline {
-    agent node('ub16.04')
+	agent {
+		label 'ub16.04'
+	}
 
     stages {
         stage('prepare') {
