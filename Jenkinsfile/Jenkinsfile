@@ -1,0 +1,26 @@
+pipeline {
+	agent {
+		label 'ub16.04'
+	}
+
+    stages {
+        stage('prepare') {
+            steps {
+                sh 'cat /etc/issue'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                withDockerContainer(args: '-u root', image: 'zbq:7.3-2') {
+                    sh 'cat /etc/redhat-release'
+                }
+                sh 'whoami'
+            }
+        }
+    }
+}
+
+
+
+

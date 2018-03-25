@@ -12,6 +12,10 @@ pipeline {
 
         stage('Build') {
             steps {
+                withDockerContainer(args: '-u root', image: 'zbq:7.3-2') {
+                    sh 'cat /etc/redhat-release'
+                    sh 'cd build_script && ./build1.py'
+                }
                 sh 'whoami'
             }
         }
