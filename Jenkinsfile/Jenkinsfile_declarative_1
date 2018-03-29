@@ -6,6 +6,7 @@ def jsonParse(def json) {
     need to approve
     method groovy.json.JsonSlurperClassic parseText java.lang.String
     new groovy.json.JsonSlurperClassic
+    staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods putAt java.lang.Object java.lang.String java.lang.Object
     */
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
@@ -35,7 +36,7 @@ pipeline {
             parallel {
                 stage('generic') {
                     steps {
-                        withDockerContainer(args: '-u root', image: evn.generic_image) {
+                        withDockerContainer(args: '-u root', image: env.generic_image) {
                             sh 'cat /etc/redhat-release'
                             sh 'cd build_script && ./build2.py'
                         }
@@ -44,7 +45,7 @@ pipeline {
 
                 stage('golden') {
                     steps {
-                        withDockerContainer(args: '-u root', image: evn.golden_image) {
+                        withDockerContainer(args: '-u root', image: env.golden_image) {
                             sh 'cat /etc/redhat-release'
                             sh 'cd build_script && ./build2.py'
                         }
