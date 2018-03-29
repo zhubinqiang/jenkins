@@ -37,16 +37,20 @@ pipeline {
 
             parallel {
                 stage('generic') {
-                    withDockerContainer(args: '-u root', image: generic_image) {
-                        sh 'cat /etc/redhat-release'
-                        sh 'cd build_script && ./build2.py'
+                    steps {
+                        withDockerContainer(args: '-u root', image: generic_image) {
+                            sh 'cat /etc/redhat-release'
+                            sh 'cd build_script && ./build2.py'
+                        }
                     }
                 }
 
                 stage('golden') {
-                    withDockerContainer(args: '-u root', image: golden_image) {
-                        sh 'cat /etc/redhat-release'
-                        sh 'cd build_script && ./build2.py'
+                    steps {
+                        withDockerContainer(args: '-u root', image: golden_image) {
+                            sh 'cat /etc/redhat-release'
+                            sh 'cd build_script && ./build2.py'
+                        }
                     }
                 }
 
