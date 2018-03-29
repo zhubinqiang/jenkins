@@ -20,7 +20,7 @@ node(mynode) {
         git 'https://github.com/zhubinqiang/jenkins'
     }
 
-    def js = readFile encoding: 'utf-8', file: 'build_script/config.json'`
+    def js = readFile encoding: 'utf-8', file: 'build_script/config.json'
     def jsObj = jsonParse(js)
     def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"]
     def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"]
