@@ -1,19 +1,16 @@
-import groovy.json.JsonSlurper
 import groovy.json.JsonSlurperClassic
 
 @NonCPS
 def jsonParse(def json) {
-        new groovy.json.JsonSlurperClassic().parseText(json)
+    /*
+    need to approve
+    method groovy.json.JsonSlurperClassic parseText java.lang.String
+    new groovy.json.JsonSlurperClassic
+    */
+    new groovy.json.JsonSlurperClassic().parseText(json)
 }
 
 mynode = 'ub16.04'
-
-
-/* golden_image = "centos:centos7.3.1611" */
-/* generic_image = "centos:centos7.4.1708" */
-/* println golden_image */
-/* println generic_image */
-
 
 node(mynode) {
     stage('prepare') {
@@ -43,5 +40,8 @@ node(mynode) {
         }
         sh 'whoami'
     }
+
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+
 }
 
