@@ -3,6 +3,7 @@ import groovy.json.JsonSlurper
 mynode = 'ub16.04'
 
 def js = "build_script/config.json"
+println new File(".").getAbsoluteFile()
 def jsonPayload = new File(js).text
 println jsonPayload
 /* def slurper = new JsonSlurper() */
