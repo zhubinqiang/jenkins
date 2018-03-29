@@ -1,0 +1,12 @@
+{
+	"docker": {
+		"centos": {
+			"repo": "centos",
+			"tag": "centos7.3.1611"
+		},
+		"generic": {
+			"repo": "centos",
+			"tag": "centos7.4.1708"
+		}
+	}
+}
