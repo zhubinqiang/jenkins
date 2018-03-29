@@ -42,13 +42,14 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('post') {
             steps {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
             }
         }
+    }
+
 }
 
 
