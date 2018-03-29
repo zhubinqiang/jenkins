@@ -16,26 +16,22 @@ println generic_image
 
 node(mynode) {
     stage('prepare') {
-        steps {
-            sh 'cat /etc/issue'
-        }
+        sh 'cat /etc/issue'
     }
 
     stage('Build') {
-        steps {
-            parallel golden: {
-                withDockerContainer(args: '-u root', image: golden_image) {
-                    sh 'cat /etc/redhat-release'
-                    sh 'cd build_script && ./build2.py'
-                }
-            }, generic: {
-                withDockerContainer(args: '-u root', image: generic_image) {
-                    sh 'cat /etc/redhat-release'
-                    sh 'cd build_script && ./build2.py'
-                }
+        parallel golden: {
+            withDockerContainer(args: '-u root', image: golden_image) {
+                sh 'cat /etc/redhat-release'
+                sh 'cd build_script && ./build2.py'
             }
-            sh 'whoami'
+        }, generic: {
+            withDockerContainer(args: '-u root', image: generic_image) {
+                sh 'cat /etc/redhat-release'
+                sh 'cd build_script && ./build2.py'
+            }
         }
+        sh 'whoami'
     }
 }
 
