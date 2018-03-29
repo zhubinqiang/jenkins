@@ -33,16 +33,17 @@ pipeline {
                     def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"]
                 }
 
-                parallel golden: {
-                    withDockerContainer(args: '-u root', image: golden_image) {
-                        sh 'cat /etc/redhat-release'
-                        sh 'cd build_script && ./build2.py'
-                    }
-                }, generic: {
-                    withDockerContainer(args: '-u root', image: generic_image) {
-                        sh 'cat /etc/redhat-release'
-                        sh 'cd build_script && ./build2.py'
-                    }
+            }
+
+            parallel golden: {
+                withDockerContainer(args: '-u root', image: golden_image) {
+                    sh 'cat /etc/redhat-release'
+                    sh 'cd build_script && ./build2.py'
+                }
+            }, generic: {
+                withDockerContainer(args: '-u root', image: generic_image) {
+                    sh 'cat /etc/redhat-release'
+                    sh 'cd build_script && ./build2.py'
                 }
             }
         }
