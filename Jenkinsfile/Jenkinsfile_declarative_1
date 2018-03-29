@@ -10,9 +10,6 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 
-def golden_image = "centos:centos7.3.1611"
-def generic_image = "centos:centos7.4.1708"
-
 pipeline {
 	agent {
 		label 'ub16.04'
