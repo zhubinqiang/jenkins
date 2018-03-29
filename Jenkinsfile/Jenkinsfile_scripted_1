@@ -1,27 +1,29 @@
 import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
+
+@NonCPS
+def jsonParse(def json) {
+        new groovy.json.JsonSlurperClassic().parseText(json)
+}
 
 mynode = 'ub16.04'
 
 
-golden_image = "centos:centos7.3.1611"
-generic_image = "centos:centos7.4.1708"
-println golden_image
-println generic_image
+/* golden_image = "centos:centos7.3.1611" */
+/* generic_image = "centos:centos7.4.1708" */
+/* println golden_image */
+/* println generic_image */
+
 
 node(mynode) {
     stage('prepare') {
         git 'https://github.com/zhubinqiang/jenkins'
     }
 
-    def js = "${WORKSPACE}/build_script/config.json"
-    /* /home/zbq/workspace/pipe2/build_script/config.json */
-    println new File(".").getAbsoluteFile()
-    def jsonPayload = new File(js).text
-    println jsonPayload
-    /* def slurper = new JsonSlurper() */
-    /* def jsObj = slurper.parseText(jsonPayload) */
-    /* def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"] */
-    /* def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"] */
+    def js = readFile encoding: 'utf-8', file: 'build_script/config.json'`
+    def jsObj = jsonParse(js)
+    def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"]
+    def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"]
 
     stage('prepare') {
         sh 'cat /etc/issue'
