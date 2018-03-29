@@ -19,7 +19,6 @@ pipeline {
     stages {
         stage('prepare') {
             steps {
-                git 'https://github.com/zhubinqiang/jenkins'
                 script {
                     def js = readFile encoding: 'utf-8', file: 'build_script/config.json'
                     def jsObj = jsonParse(js)
