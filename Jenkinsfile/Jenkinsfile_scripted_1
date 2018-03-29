@@ -13,7 +13,8 @@ node(mynode) {
         git 'https://github.com/zhubinqiang/jenkins'
     }
 
-    def js = "${WORKSPACE}/jenkins/build_script/config.json"
+    def js = "${WORKSPACE}/build_script/config.json"
+    /* /home/zbq/workspace/pipe2/build_script/config.json */
     println new File(".").getAbsoluteFile()
     def jsonPayload = new File(js).text
     println jsonPayload
