@@ -2,14 +2,6 @@ import groovy.json.JsonSlurper
 
 mynode = 'ub16.04'
 
-def js = "build_script/config.json"
-println new File(".").getAbsoluteFile()
-def jsonPayload = new File(js).text
-println jsonPayload
-/* def slurper = new JsonSlurper() */
-/* def jsObj = slurper.parseText(jsonPayload) */
-/* def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"] */
-/* def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"] */
 
 golden_image = "centos:centos7.3.1611"
 generic_image = "centos:centos7.4.1708"
@@ -17,6 +9,15 @@ println golden_image
 println generic_image
 
 node(mynode) {
+    def js = "build_script/config.json"
+    println new File(".").getAbsoluteFile()
+    def jsonPayload = new File(js).text
+    println jsonPayload
+    /* def slurper = new JsonSlurper() */
+    /* def jsObj = slurper.parseText(jsonPayload) */
+    /* def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"] */
+    /* def generic_image = jsObj["docker"]["generic"]["repo"] + ":" + jsObj["docker"]["generic"]["tag"] */
+
     stage('prepare') {
         sh 'cat /etc/issue'
     }
