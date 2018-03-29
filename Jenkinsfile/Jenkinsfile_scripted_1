@@ -2,8 +2,9 @@ import groovy.json.JsonSlurper
 
 mynode = 'ub16.04'
 
-/* def js = "build_script/config.json" */
-/* def jsonPayload = new File(js).text */
+def js = "build_script/config.json"
+def jsonPayload = new File(js).text
+println jsonPayload
 /* def slurper = new JsonSlurper() */
 /* def jsObj = slurper.parseText(jsonPayload) */
 /* def golden_image = jsObj["docker"]["centos"]["repo"] + ":" + jsObj["docker"]["centos"]["tag"] */
