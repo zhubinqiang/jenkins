@@ -9,6 +9,10 @@ println golden_image
 println generic_image
 
 node(mynode) {
+    stage('prepare') {
+        git 'https://github.com/zhubinqiang/jenkins'
+    }
+
     def js = "${WORKSPACE}/jenkins/build_script/config.json"
     println new File(".").getAbsoluteFile()
     def jsonPayload = new File(js).text
